@@ -251,6 +251,7 @@ def stockpred(request):
     stock_name = None
     nse_symbol = None
     prediction_date = None
+        time_frame = None
 
     if request.method == "POST":
         symbol = request.POST.get("symbol")
@@ -278,6 +279,7 @@ def stockpred(request):
 
                     # Calculate prediction date
                     prediction_date = current_price_date + timedelta(days=days_ahead)
+                    time_frame=days_ahead
 
                     # Fetch historical stock data for forecasting
                     history = fetch_stock_data_for_prediction(nse_symbol)
@@ -309,6 +311,7 @@ def stockpred(request):
         "graph_url": graph_url,
         "error": error,
         "prediction_date": prediction_date,
+        "time_frame": time_frame
     })
 #_____________________________________news_______________________________________
 from .news import FinancialNewsFetcher
