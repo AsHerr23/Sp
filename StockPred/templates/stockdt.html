@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ stock.name }} - Stock Details</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/stockdt.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="stock-container">
+        {% if stock %}
+            <h2>{{ stock.name }} ({{ stock.symbol }})</h2>
+            
+            <!-- Stock Details Table -->
+            <table class="stock-table">
+                <thead>
+                    <tr>
+                        <th>Current Price</th>
+                        <th>Open Price</th>
+                        <th>Day High</th>
+                        <th>Day Low</th>
+                        <th>Previous Close</th>
+                        <th>Market Cap</th>
+                        <th>Volume</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>₹{{ stock.current_price }}</td>
+                        <td>₹{{ stock.open_price }}</td>
+                        <td>₹{{ stock.day_high }}</td>
+                        <td>₹{{ stock.day_low }}</td>
+                        <td>₹{{ stock.previous_close }}</td>
+                        <td>{{ stock.market_cap }}</td>
+                        <td>{{ stock.volume }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Buy & Sell Buttons -->
+          
+            <!-- Stock Chart -->
+            <h3>📅 Last Day Closing Prices</h3>
+            <canvas id="stockChart"></canvas>
+
+            <script>
+                var stockData = {{ stock.history|safe }};
+                var labels = Object.keys(stockData);
+                var data = labels.map(date => stockData[date].Close);
+
+                var ctx = document.getElementById("stockChart").getContext("2d");
+                new Chart(ctx, {
+                    type: "line",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Closing Price",
+                            data: data,
+                            borderColor: "#ffd700",
+                            backgroundColor: "rgba(255, 215, 0, 0.2)",
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: { display: true },
+                            y: { display: true }
+                        }
+                    }
+                });
+            </script>
+
+            <!-- ARIMA Stock Prediction -->
+            <h3>🔮 Predict Stock Price</h3>
+                <form method="GET">
+                    <label for="date">Select Date for Prediction:</label>
+                    <input type="date" id="date" name="date" required>
+                    <input type="hidden" name="symbol" value="{{ stock.symbol }}">
+                    <button type="submit">Predict</button>
+                </form>
+
+            {% if prediction %}
+            <div class="prediction-box">
+                {% if prediction.error %}
+                    <p class="error">⚠️ {{ prediction.error }}</p>
+                {% else %}
+                    <p>📅 Predicted Price on <strong>{{ prediction.date }}</strong>: 
+                       <span class="predicted-price">₹{{ prediction.predicted_price }}</span></p>
+
+                    <!-- Forecast Graph Display -->
+                    
+                {% endif %}
+            </div>
+        {% endif %}
+
+            <!-- Back Link -->
+            
+        {% else %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    <div class="back-button">
+        <a href="{% url 'index' %}" class="btn btn-secondary">⬅ Back to Home</a>
+    </div>
+</body>
+</html>

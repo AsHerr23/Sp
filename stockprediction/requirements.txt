@@ -1,0 +1,11 @@
+Django>=4.0
+requests
+numpy
+transformers
+vaderSentiment
+yfinance
+pandas
+matplotlib
+statsmodels
+scikit-learn
+pmdarima

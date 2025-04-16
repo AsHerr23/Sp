@@ -1,0 +1,103 @@
+/* Reset box-sizing for all elements within the footer */
+.footer * {
+    box-sizing: border-box;
+  }
+  
+  /* Main Footer Styling */
+  .footer {
+    background: #82d2e8;
+    border: 1px solid #d9d9d9; /* Simplified border-style */
+    border-top-width: 1px;
+    padding: 32px 32px 130px; /* Consistent padding with shorthand */
+    display: flex;
+    flex-wrap: wrap; /* Enables responsive wrapping */
+    gap: 16px; /* Spacing between child elements */
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+    height: auto; /* Changed from fixed height to auto for better responsiveness */
+  }
+  
+  /* Title Section */
+  .title {
+    background: #82d2e8;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+    width: 262px;
+    min-width: 240px;
+  }
+  
+  /* Button List */
+  .button-list {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+  
+  /* Text Link List */
+  .text-link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    width: 262px;
+  }
+  
+  /* Title 2 Section */
+  .title2 {
+    padding-bottom: 16px; /* Simplified padding */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  /* Strong Text Section */
+  .text-strong {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .text-strong2 {
+    color: #1e1e1e; /* Default text color */
+    font-family: "Inter-SemiBold", sans-serif;
+    font-size: 16px;
+    line-height: 1.4; /* Line height as a fraction */
+    font-weight: 600;
+  }
+  
+  /* Link List Items */
+  .text-link-list-item {
+    width: 100%; /* Full width by default for better responsiveness */
+    height: 22px;
+  }
+  
+  .list-item {
+    color: #1e1e1e;
+    font-family: "Inter-Regular", sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  /* Responsive Spacing for Individual List Items */
+  .list-item2 { width: 76.4%; }
+  .list-item3 { width: 94.38%; }
+  .list-item5 { width: 59.55%; }
+  .list-item6 { width: 100%; }
+  .list-item8 { width: 134.83%; }
+  .list-item9 { width: 188.76%; }
+  .list-item10 { width: 131.46%; }
+  .list-item11 { width: 61.8%; }
+  .list-item15 { width: 101.12%; }
+  
+  /* Removed overly specific and repetitive classes */
+  

@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+{% block title %}StockPro Administration{% endblock %}
+
+{% block branding %}
+    <div id="branding-container">
+        <h1 id="site-name">
+            <a href="/" target="_blank">StockPro</a>
+        </h1>
+        <a href="/" class="home-button" target="_blank">Go to Main Page</a>
+    </div>
+{% endblock %}
+
+{% block extrastyle %}
+<style>
+    /* Branding Container */
+    #branding-container {
+        display: flex;
+        align-items: center;
+        gap: 15px; /* Space between text and button */
+    }
+
+    /* Button Styling */
+    .home-button {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+
+    .home-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}

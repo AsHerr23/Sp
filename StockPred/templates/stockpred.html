@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Price Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-purple-200 via-pink-100 to-yellow-100 min-h-screen flex items-center justify-center p-8">
+    <div class="bg-white shadow-2xl rounded-3xl p-10 w-full max-w-7xl">
+        <h1 class="text-5xl font-extrabold text-center mb-12 text-purple-700">📈 Stock Price Prediction</h1>
+        
+        <form method="post" onsubmit="return convertDateToDaysAhead()" class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+            {% csrf_token %}
+            <div>
+                <label class="block text-gray-700 text-2xl font-semibold mb-4">Stock Symbol (NSE):</label>
+                <input type="text" name="symbol" placeholder="e.g., SBIN" required
+                       class="w-full border border-purple-300 rounded-2xl p-6 text-xl text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-inner transition">
+            </div>
+            <div>
+                <label class="block text-gray-700 text-2xl font-semibold mb-4">Select Prediction Date:</label>
+                <input type="date" id="prediction_date" required
+                       class="w-full border border-purple-300 rounded-2xl p-6 text-xl text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-inner transition">
+            </div>
+            
+            <input type="hidden" name="days_ahead" id="days_ahead">
+
+            <div class="md:col-span-2 flex justify-center">
+                <button type="submit"
+                        class="w-72 bg-purple-600 hover:bg-purple-700 text-white text-2xl font-bold py-4 rounded-2xl transition transform hover:scale-105 shadow-xl">
+                    🚀 Predict
+                </button>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div class="mt-10 bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-3xl shadow-inner">
+            <h2 class="text-4xl font-bold text-green-700 mb-4 text-center">
+                Prediction for {{ stock_name }} ({{ nse_symbol }})
+            </h2>
+
+            <p class="text-xl text-gray-600 text-center mb-2">
+                📅 Stock Price Date: <span class="font-semibold text-gray-800">{{ current_price_date|date:"F j, Y" }}</span>
+            </p>
+
+            <p class="text-xl text-gray-600 text-center mb-6">
+                🔮 Prediction Date: <span class="font-semibold text-purple-700">{{ prediction_date|date:"F j, Y" }}</span>
+            </p>
+        
+            <p class="text-2xl text-gray-800 mb-4 text-center">
+                Current Price: <span class="text-blue-600 font-bold">₹{{ current_price }}</span>
+            </p>
+        
+            <p class="text-2xl text-gray-800 mb-6 text-center">
+                Predicted Price: <span class="text-green-600 font-bold">₹{{ prediction.predicted_price }}</span>
+            </p>
+        
+            <h3 class="text-3xl font-semibold text-purple-700 mb-4 text-center">📉 Forecast Chart:</h3>
+            <div class="flex justify-center">
+                <img src="{{ graph_url }}" alt="Stock Forecast Graph" 
+                     class="w-full max-w-5xl border rounded-2xl shadow-2xl">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <p class="mt-6 text-red-500 text-center font-semibold text-2xl">{{ error }}</p>
+        {% endif %}
+
+        <div class="back-button mt-10 flex justify-center">
+            <a href="{% url 'index' %}" 
+               class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-8 rounded-2xl shadow-md transition transform hover:scale-105 text-xl">
+                ⬅ Back to Home
+            </a>
+        </div>
+        
+    </div>
+
+    <script>
+        function convertDateToDaysAhead() {
+            const selectedDate = new Date(document.getElementById('prediction_date').value);
+            const today = new Date();
+            const timeDiff = selectedDate - today;
+            const daysAhead = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            
+            if (daysAhead < 1) {
+                alert("Please select a future date.");
+                return false;
+            }
+
+            document.getElementById('days_ahead').value = daysAhead;
+            return true;
+        }
+    </script>
+</body>
+</html>

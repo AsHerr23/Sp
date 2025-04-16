@@ -1,0 +1,129 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header styles */
+
+/* Basic styles for navigation */
+/* Reset default styles */
+
+
+
+
+/* Section styles */
+#home {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #fff;
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 900px;
+}
+
+#home h2 {
+    font-size: 2rem;
+    color: #004c8c;
+    margin-bottom: 20px;
+}
+
+#home p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+   
+
+    #home h2 {
+        font-size: 1.8rem;
+    }
+
+    #home p {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slide1 .caption {
+        font-size: 1.5rem;
+        max-width: 80%;
+        padding: 15px 20px;
+    }
+}
+
+/* Caption styling */
+
+
+
+
+
+
+
+.slide2 img {
+    max-width: 80vw; /* Medium zoom */
+    max-height: 80vh;
+}
+.caption {
+    position: absolute;
+    bottom: 12%; /* Adjusts placement */
+    left: 2%; /* Moves it slightly */
+    font-size: 1.8rem; /* Slightly smaller */
+    font-weight: 500; /* Medium weight for natural feel */
+    color: rgb(235, 238, 238);
+    text-align: left;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    font-family: "Patrick Hand", sans-serif; /* Natural handwriting */
+    background: transparent; /* Fully transparent */
+    padding: 10px 20px;
+    border-radius: 5px;
+    max-width: 45%; /* Limits width for readability */
+    letter-spacing: 0.5px; /* Slightly spaced for a professional look */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slide1 .caption {
+        font-size: 1.5rem;
+        max-width: 80%;
+        padding: 15px 20px;
+    }
+}
+
+.slide3 img {
+    max-width: 90vw; /* More zoom */
+    max-height: 90vh;
+}
+
+.slide4 img {
+    width: 100vw; /* Full width of the viewport */
+    height: vh; /* Full height of the viewport */
+    object-fit: cover; /* Ensures the image covers the screen without stretching */
+    object-position: center; /* Keeps the focus on the center */
+}
+
+/* Active slide effect */
+.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+

@@ -1,0 +1,18 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<header>
+    <div class="logo">
+        <img src="{% static 'images/logo.webp' %}" alt="Stock Pro"> <!-- Logo image -->
+        <h1>StockPro</h1> <!-- Add your site name -->
+    </div>
+    
+    <nav>
+      <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'home' %}">Stocks</a></li>
+          <li><a href="{% url 'stockpred' %}">Predictions</a></li>
+          <li><a href="{% url 'support' %}">Support</a></li>
+          <li><a href="{% url 'news' %}">News</a></li>
+      </ul>
+    </nav>
+</header>

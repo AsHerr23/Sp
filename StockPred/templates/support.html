@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raise Support Ticket</title>
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/support.css' %}">
+    {% include 'header.html' %}
+</head>
+<body>
+    <div>
+        <h1>Raise Free Support Ticket</h1>
+        <div class="support-form-container">
+            <form action="/submit_ticket/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="problem">Your Problem:</label>
+                    <textarea id="problem" name="problem" rows="5" placeholder="Describe your problem..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email ID:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email ID" required>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Your Mobile Number:</label>
+                    <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" pattern="[0-9]{10}" required>
+                </div>
+                <button type="submit" class="submit-button">Raise Ticket</button>
+            </form>
+        </div>
+    </div>
+    {% include  'footer.html'%}
+</body>
+
+</html>
